@@ -1,7 +1,16 @@
 ﻿#pragma once
 
 #include "Node.h"
+/*
+Создайте шаблонный класс односвязного списка для работы с целыми значениями. Требуется создать реализации для типичных операций над элементами:
 
+AddToHead – добавление элемента в голову
+AddToTail – добавление элемента в хвост
+DeleteFromHead – удаление элемента из головы
+DeleteFromTail – удаление элемента из хвоста
+DeleteAll – удаление всех элементов
+Show – отображение всех элементов списка на экран
+*/
 class List
 {
 private:
@@ -26,6 +35,8 @@ public:
     void Add(Node* new_node);
 
 
+    void AddToHead(Node* new_node);
+
 
 
     void Assign(const List& list);
@@ -34,7 +45,9 @@ public:
     void Print() const;
 
     // Удаление элемента списка (удаляется головной элемент).
-    void RemoveHead();
+    void DeleteFromHead();
+    void DeleteFromTail();
+
 
     // Удаление всех элементов списка.
     void RemoveAll();
