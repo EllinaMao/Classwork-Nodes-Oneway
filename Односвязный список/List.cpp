@@ -59,6 +59,46 @@ void List::Add(const char data)////data - данні котрі хочемо д�
     ++m_size;
 }
 
+void List::Add(Node* new_node)
+{
+    if (m_head == nullptr)//////якщо список пустий
+    {
+        // Новый элемент становится головным элементом списка.
+        m_head = new_node;
+    }
+    else
+    {
+        Node* temp = m_head;
+
+        while (temp->m_next != nullptr)
+        {
+            temp = temp->m_next;
+        }
+
+        // Новый элемент становится в конец списка.
+        temp->m_next = new_node;
+    }
+
+    ++m_size;
+}
+
+void List::AddToHead(Node* new_node)
+{
+    if (m_size > 0)
+    {
+        new_node->m_next = m_head; 
+        m_head = new_node;         
+    }
+    else
+    {
+        m_head = new_node;         
+    }
+
+    ++m_size;                     
+}
+
+
+
 void List::Assign(const List& list)
 {
     RemoveAll();
@@ -93,7 +133,7 @@ void List::Print() const
 
 //////////////  RemoveAt (int index)  DZ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-void List::RemoveHead()//1й
+void List::DeleteFromHead()//1й
 {
     if (m_head != nullptr)
     {
@@ -110,12 +150,42 @@ void List::RemoveHead()//1й
     }
 }
 
+void List::DeleteFromTail()
+{
+    if (m_head == nullptr)
+    {
+        return;
+    }
+
+    if (m_head->m_next == nullptr)
+    {
+        delete m_head;
+        m_head = nullptr;
+    }
+    else
+    {
+        Node* temp = m_head;
+       
+       //two times to find almoust last element 
+        while (temp->m_next->m_next != nullptr)
+        {
+            temp = temp->m_next;
+        }
+        // delete last
+        delete temp->m_next;
+        temp->m_next = nullptr;
+    }
+
+    --m_size; 
+}
+
+
 void List::RemoveAll()
 {
     // Пока еще есть элементы.
     while (m_head != nullptr)
     {
         // Удаление элементов по одному.
-        RemoveHead();
+        DeleteFromHead();
     }
 }
