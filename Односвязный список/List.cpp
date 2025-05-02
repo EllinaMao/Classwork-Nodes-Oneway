@@ -99,25 +99,19 @@ void List::AddToHead(Node* new_node)
 
 void List::Insert(Node* new_node, unsigned int index)
 {
-    if (index < m_size)
-    {
-        if (index == 0U)
-        {
-            AddToHead(new_node);
-        }
-        else if (index == m_size - 1U)
-        {
-            Add(new_node);
-        }
-        else {
+    if (index > m_size) {
+        return; 
+    }
 
-            Node* current = NodeAt(index);
-            new_node->m_next = current;
-
-        }
-
-
-
+    if (index == 0) {
+        AddToHead(new_node); 
+    }
+    else {
+        Node* prev = NodeAt(index - 1);
+        new_node->m_next = prev->m_next; 
+        prev->m_next = new_node;
+        ++m_size;
+    }
 }
 
 
