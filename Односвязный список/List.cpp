@@ -114,6 +114,69 @@ void List::Insert(Node* new_node, unsigned int index)
     }
 }
 
+void List::DeleteAt(unsigned int position)
+{
+    if (position >= m_size) {
+        return; 
+    }
+
+    if (position == 0) {
+        DeleteFromHead();
+    }
+    else {
+        Node* prev = NodeAt(position - 1);
+        Node* toDelete = prev->m_next;
+        prev->m_next = toDelete->m_next;
+        delete toDelete;
+        --m_size;
+    }
+}
+int List::Find(const char data) const
+{
+    Node* current = m_head;
+    int position = 0;
+
+    while (current != nullptr) {
+        if (current->m_data == data) {
+            return position;
+        }
+        current = current->m_next;
+        ++position;
+    }
+
+    return -1; // Element not found
+}
+
+int List::FindAndReplace(const char oldData, const char newData)
+{
+    Node* current = m_head;
+    int replacements = 0;
+
+    while (current != nullptr) {
+        if (current->m_data == oldData) {
+            current->m_data = newData;
+            ++replacements;
+        }
+        current = current->m_next;
+    }
+
+    return (replacements > 0) ? replacements : -1; 
+}
+void List::Reverse()
+{
+    Node* prev = nullptr;
+    Node* current = m_head;
+    Node* next = nullptr;
+
+    while (current != nullptr) {
+        next = current->m_next;
+        current->m_next = prev;
+        prev = current;
+        current = next;
+    }
+
+    m_head = prev;
+}
 
 
 Node* List::NodeAt(unsigned int index) const
