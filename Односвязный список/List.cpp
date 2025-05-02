@@ -97,6 +97,44 @@ void List::AddToHead(Node* new_node)
     ++m_size;                     
 }
 
+void List::Insert(Node* new_node, unsigned int index)
+{
+    if (index < m_size)
+    {
+        if (index == 0U)
+        {
+            AddToHead(new_node);
+        }
+        else if (index == m_size - 1U)
+        {
+            Add(new_node);
+        }
+        else {
+
+            Node* current = NodeAt(index);
+            new_node->m_next = current;
+
+        }
+
+
+
+}
+
+
+
+Node* List::NodeAt(unsigned int index) const
+{
+    if (index >= m_size) {
+        return nullptr;
+    }
+
+    Node* current = m_head;
+    for (unsigned int i = 0; i < index; ++i) {
+        current = current->m_next;
+    }
+
+    return current;
+}
 
 
 void List::Assign(const List& list)
