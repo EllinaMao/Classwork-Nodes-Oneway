@@ -384,18 +384,22 @@ inline void List<T>::RemoveAll()
 }
 
 template<typename T>
-inline void List<T>::Insert(Node<T>* new_node, unsigned int index){
-if (index > m_size) {
-    return;
-}
+inline void List<T>::Insert(Node<T>* new_node, unsigned int index) {
+    if (new_node == nullptr || index > m_size) {
+        return; 
+    }
 
-if (index == 0) {
-    AddToHead(new_node);
-}
-else {
-    Node* prev = NodeAt(index - 1);
-    new_node->m_next = prev->m_next;
-    prev->m_next = new_node;
-    ++m_size;
-}
+    if (index == 0) {
+        AddToHead(new_node); // Вставка в начало.
+    }
+    else if (index == m_size) {
+        Add(new_node); // Вставка в конец.
+    }
+    else {
+        // Вставка в середину.
+        Node* prev = NodeAt(index - 1);
+        new_node->m_next = prev->m_next;
+        prev->m_next = new_node;
+        ++m_size; // Увеличиваем размер списка.
+    }
 }
