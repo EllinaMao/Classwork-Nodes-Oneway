@@ -6,7 +6,7 @@ template <typename T>
 class List
 {
 private:
-    Node<T>* m_head = nullptr; // Corrected to Node<T>*
+    Node<T>* m_head = nullptr; 
     unsigned int m_size = 0;
 
 public:
@@ -74,14 +74,14 @@ List<T>& List<T>::operator=(const List& right)
 template<typename T>
 inline void List<T>::Add(const T data)
 {
-    Node<T>* newNode = new Node<T>(data); // Corrected to Node<T>*
+    Node<T>* newNode = new Node<T>(data); 
     if (m_head == nullptr)
     {
         m_head = newNode;
     }
     else
     {
-        Node<T>* temp = m_head; // Corrected to Node<T>*
+        Node<T>* temp = m_head; 
         while (temp->m_next != nullptr)
         {
             temp = temp->m_next;
@@ -100,7 +100,7 @@ inline void List<T>::Add(Node<T>* new_node)
     }
     else
     {
-        Node<T>* temp = m_head; // Corrected to Node<T>*
+        Node<T>* temp = m_head; 
         while (temp->m_next != nullptr)
         {
             temp = temp->m_next;
@@ -130,7 +130,7 @@ inline void List<T>::Assign(const List& list)
 {
     RemoveAll();
 
-    Node<T>* node = list.m_head; // Corrected to Node<T>*
+    Node<T>* node = list.m_head; 
     while (node != nullptr)
     {
         Add(node->m_data);
@@ -141,7 +141,7 @@ inline void List<T>::Assign(const List& list)
 template<typename T>
 inline void List<T>::Print() const
 {
-    Node<T>* temp = m_head; // Corrected to Node<T>*
+    Node<T>* temp = m_head; 
     while (temp != nullptr)
     {
         std::cout << temp->m_data;
@@ -155,7 +155,7 @@ inline void List<T>::DeleteFromHead()
 {
     if (m_head != nullptr)
     {
-        Node<T>* node = m_head; // Corrected to Node<T>*
+        Node<T>* node = m_head;
         m_head = m_head->m_next;
         delete node;
         --m_size;
@@ -177,7 +177,7 @@ inline void List<T>::DeleteFromTail()
     }
     else
     {
-        Node<T>* temp = m_head; // Corrected to Node<T>*
+        Node<T>* temp = m_head;
         while (temp->m_next->m_next != nullptr)
         {
             temp = temp->m_next;
@@ -215,7 +215,7 @@ inline void List<T>::Insert(Node<T>* new_node, unsigned int index)
     }
     else
     {
-        Node<T>* prev = NodeAt(index - 1); // Corrected to Node<T>*
+        Node<T>* prev = NodeAt(index - 1);
         new_node->m_next = prev->m_next;
         prev->m_next = new_node;
         ++m_size;
@@ -236,8 +236,8 @@ inline void List<T>::DeleteAt(unsigned int position)
     }
     else
     {
-        Node<T>* prev = NodeAt(position - 1); // Corrected to Node<T>*
-        Node<T>* toDelete = prev->m_next;    // Corrected to Node<T>*
+        Node<T>* prev = NodeAt(position - 1); 
+        Node<T>* toDelete = prev->m_next;   
         prev->m_next = toDelete->m_next;
         delete toDelete;
         --m_size;
@@ -252,7 +252,7 @@ inline Node<T>* List<T>::NodeAt(unsigned int index) const
         return nullptr;
     }
 
-    Node<T>* current = m_head; // Corrected to Node<T>*
+    Node<T>* current = m_head; 
     for (unsigned int i = 0; i < index; ++i)
     {
         current = current->m_next;
@@ -263,7 +263,7 @@ inline Node<T>* List<T>::NodeAt(unsigned int index) const
 template<typename T>
 inline int List<T>::Find(const T data) const
 {
-    Node<T>* current = m_head; // Corrected to Node<T>*
+    Node<T>* current = m_head; 
     int position = 0;
 
     while (current != nullptr)
@@ -281,7 +281,7 @@ inline int List<T>::Find(const T data) const
 template<typename T>
 inline int List<T>::FindAndReplace(const T oldData, const T newData)
 {
-    Node<T>* current = m_head; // Corrected to Node<T>*
+    Node<T>* current = m_head; 
     int replacements = 0;
 
     while (current != nullptr)
