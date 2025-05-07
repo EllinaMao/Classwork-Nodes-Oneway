@@ -49,36 +49,33 @@ int main()
 	//list3.Print();
 	//cout << list3.GetSize() << endl;
 
+	List<char> list;
+	list.AddToHead(new Node<char>('a'));
+	list.AddToHead(new Node<char>('b'));
+	list.AddToHead(new Node<char>('c'));
 
-    List list;
-    list.AddToHead(new Node('a'));
-    list.AddToHead(new Node('b'));
-    list.AddToHead(new Node('c'));
+	cout << "After add to head ";
+	list.Print();
 
-    cout << "After add to head ";
-    list.Print();
+	list.Add(new Node<char>('X'));
+	list.Add(new Node<char>('Y'));
+	list.Add(new Node<char>('Z'));
 
+	cout << "After add to tail: ";
+	list.Print();
 
-    list.Add(new Node('X'));
-    list.Add(new Node('Y'));
-    list.Add(new Node('Z'));
+	list.DeleteFromHead();
+	cout << "After delete from head: ";
+	list.Print();
 
-    cout << "After add to tail: ";
-    list.Print();
+	list.DeleteFromTail();
+	cout << "After delete from tail: ";
+	list.Print();
 
-
-    list.DeleteFromHead();
-    cout << "After delete from head: ";
-    list.Print();
-
-    list.DeleteFromTail();
-    cout << "After delete from tail: ";
-    list.Print();
-
-    // Удаляем все элементы
-    list.RemoveAll();
-    cout << "delete all: ";
-    list.Print();
+	// Удаляем все элементы
+	list.RemoveAll();
+	cout << "delete all: ";
+	list.Print();
 
 
     return 0;
