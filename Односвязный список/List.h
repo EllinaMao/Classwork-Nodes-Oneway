@@ -299,16 +299,16 @@ inline int List<T>::FindAndReplace(const T oldData, const T newData)
 template<typename T>
 inline void List<T>::Reverse()
 {
-    Node<T>* prev = nullptr;   
-    Node<T>* current = m_head; 
-    Node<T>* next = nullptr;   
+    Node<T>* revercedNode = nullptr;  //хранит итоговый вид списка
+    Node<T>* currentStateNode = m_head;  //с ним идет вся работа
+    Node<T>* saveNextNode = nullptr;   //сохраняет порядок списка что бы не потерять указатель
 
-    while (current != nullptr)
+    while (currentStateNode != nullptr)
     {
-        next = current->m_next;
-        current->m_next = prev;
-        prev = current;
-        current = next;
+        saveNextNode = currentStateNode->m_next; //нода хранит дальшейший указатель, что бы не потерядся
+        currentStateNode->m_next = revercedNode; //нынешняя нода ставит свой следующий указатель на ноду на которую смотрит (revercedNode)
+        revercedNode = currentStateNode;//перезаписываем итоговый вариант ноды
+        currentStateNode = saveNextNode;//возвращаемся к исходному списку для следующей итерации
     }
-    m_head = prev;
+    m_head = revercedNode;
 }
